@@ -20,19 +20,55 @@
 <section class="wrap cs-hero">
   <p class="kicker">Agentic platform · work in progress</p>
   <h1>Nexus: Agentic Control Plane</h1>
-  <p class="lede">An agentic platform that connects the company’s AI agents and gives management one holistic view of all of them, with a single kill switch.</p>
+  <p class="lede">An agentic platform that connects the company’s AI agents and platforms and gives management one holistic view of them, with a single kill switch.</p>
   
 </section>
 
 <section class="wrap pair">
   <div class="section-label"><span>What it is</span></div>
-  <p class="role">As the number of production agents grew (voice, chat, lead management, ads, social, escalation), each one ran and reported on its own. Nexus is being built with Claude Code as the layer above them: it connects the agents, shows management what every agent is doing in one place, and puts all of them behind one kill switch. It is work in progress.</p>
+  <p class="role">As the number of production agents and AI platforms grew (category intelligence, marketing, voice and chat agents, lead enrichment, RFQ, customer and vendor intelligence, collections), each one ran and reported on its own. Nexus is being built with Claude Code as the layer above them: it connects every platform, shows management what the whole estate is doing in one place, and puts all of it behind one kill switch. It is work in progress.</p>
 </section>
 <section class="wrap design">
-  <div class="section-label"><span>Design intent</span></div>
-  <ol class="reasons"><li>Connect the agents: every agent registers with Nexus instead of running in isolation.</li><li>One holistic view: management sees agent activity and status across the business in one place.</li><li>One kill switch: every agent can be stopped from a single control.</li><li>Built with Claude Code.</li></ol>
+  <div class="section-label"><span>Design</span></div>
+  <ol class="reasons"><li>One integration hub: every platform publishes and subscribes through AWS EventBridge rather than point-to-point links.</li><li>One source of truth: Zoho CRM is the system of record, synced both ways with every platform.</li><li>One management view: an executive dashboard and a topology map across all connected platforms and agents.</li><li>One control plane: any LLM, agent or connector can be switched off to isolate a problem, and a single kill switch stops everything.</li><li>Built with Claude Code.</li></ol>
 </section>
 
+<section class="wrap flow">
+  <div class="section-label"><span>How it works</span><span class="count">5 screens</span></div>
+  <p class="mask-note">Captured from the Nexus prototype. The company is shown as the fictional Northwind, every figure is masked with “X”, and internal system addresses are replaced, all in the page before capture. The dashboard’s charts are drawn on a canvas that can’t be masked, so that view stops above them.</p>
+  <ol class="shots">
+    <li>
+      <figure>
+        <a href="../img/nexus/01-executive-dashboard.png" class="shot"><img src="../img/nexus/01-executive-dashboard.png" alt="The executive dashboard: headline KPIs and the end-to-end flow across every connected platform, from discovery and engagement to conversion and revenue." loading="eager"></a>
+        <figcaption><span class="step">01</span>The executive dashboard: headline KPIs and the end-to-end flow across every connected platform, from discovery and engagement to conversion and revenue.</figcaption>
+      </figure>
+    </li>
+    <li>
+      <figure>
+        <a href="../img/nexus/02-agent-topology-map.png" class="shot"><img src="../img/nexus/02-agent-topology-map.png" alt="The topology: data sources feed the AI platforms, all connected through AWS EventBridge as the central integration hub." loading="lazy"></a>
+        <figcaption><span class="step">02</span>The topology: data sources feed the AI platforms, all connected through AWS EventBridge as the central integration hub.</figcaption>
+      </figure>
+    </li>
+    <li>
+      <figure>
+        <a href="../img/nexus/03-integration-hub.png" class="shot"><img src="../img/nexus/03-integration-hub.png" alt="The integration hub: each connected platform, what it does, and Zoho CRM as the single source of truth." loading="lazy"></a>
+        <figcaption><span class="step">03</span>The integration hub: each connected platform, what it does, and Zoho CRM as the single source of truth.</figcaption>
+      </figure>
+    </li>
+    <li>
+      <figure>
+        <a href="../img/nexus/04-tech-architecture.png" class="shot"><img src="../img/nexus/04-tech-architecture.png" alt="The technology architecture, layered from AWS infrastructure through the core business systems." loading="lazy"></a>
+        <figcaption><span class="step">04</span>The technology architecture, layered from AWS infrastructure through the core business systems.</figcaption>
+      </figure>
+    </li>
+    <li>
+      <figure>
+        <a href="../img/nexus/05-control-panel.png" class="shot"><img src="../img/nexus/05-control-panel.png" alt="The control plane: every platform and agent has its own on/off switch to isolate issues, next to live sync status with the CRM." loading="lazy"></a>
+        <figcaption><span class="step">05</span>The control plane: every platform and agent has its own on/off switch to isolate issues, next to live sync status with the CRM.</figcaption>
+      </figure>
+    </li>
+  </ol>
+</section>
 <nav class="wrap next"><a href="property-nex.html"><span>Next</span>Property Nex</a></nav>
 </main>
 <div class="site-foot-bar"><footer class="site-foot wrap"><span>Abhishek Sharma · Singapore</span><span>Screenshots are live captures. Business data is masked before capture.</span></footer></div>
