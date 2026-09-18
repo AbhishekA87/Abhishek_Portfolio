@@ -15,6 +15,7 @@ fs.mkdirSync(path.join(DIST, 'work'), { recursive: true });
 fs.copyFileSync(path.join(ROOT, 'site', 'style.css'), path.join(DIST, 'style.css'));
 // Clickable proofs of concept are published alongside the site.
 if (fs.existsSync(path.join(ROOT, 'poc'))) fs.cpSync(path.join(ROOT, 'poc'), path.join(DIST, 'poc'), { recursive: true });
+fs.cpSync(path.join(ROOT, 'site', 'img'), path.join(DIST, 'img'), { recursive: true });
 
 const missing = [];
 function shotsFor(cs) {
@@ -137,9 +138,11 @@ fs.writeFileSync(path.join(DIST, 'index.html'), page({
   title: `${person.name} | ${person.title}`, body: `
 <main>
 <section class="wrap hero">
-  <div><p class="kicker">${esc(person.title)} · ${esc(person.location)}</p>
-  <h1>I architect and ship AI platforms that replace manual operations.</h1></div>
+  <div class="hero-text"><p class="kicker">${esc(person.title)} · ${esc(person.location)}</p>
+  <h1>I architect and ship AI platforms that replace manual operations.</h1>
   <p class="lede">These are real systems in production. Each case study walks through the actual screens, in the order a user moves through them.</p>
+  <p class="hero-cta"><a class="btn" href="#work">See the work</a><a class="btn ghost" href="#contact">Get in touch</a></p></div>
+  <figure class="portrait"><div class="frame"><img src="img/abhishek-sharma.jpg" alt="Abhishek Sharma" width="675" height="900"></div><figcaption>Abhishek Sharma<span>Singapore</span></figcaption></figure>
 </section>
 <section class="metrics">
   <div class="wrap metrics-row">
