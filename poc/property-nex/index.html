@@ -1,0 +1,306 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Property Nex · Proof of Concept</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #F4F6F5; --panel: #FFFFFF; --ink: #0E1B1A; --ink-2: #44524F; --ink-3: #7A8683; --rule: #E1E6E4;
+  --brand: #0F766E; --brand-2: #14B8A6; --brand-soft: #E6F4F1; --amber: #D97706; --amber-soft: #FEF3C7;
+  --red: #B91C1C; --red-soft: #FEE2E2; --indigo: #4338CA; --indigo-soft: #E0E7FF;
+  --font: 'Manrope', system-ui, sans-serif; --mono: 'JetBrains Mono', ui-monospace, monospace;
+}
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--bg); color: var(--ink); font: 500 14px/1.5 var(--font); }
+a { color: inherit; text-decoration: none; }
+
+/* Horizontal header */
+.top { background: var(--ink); color: #fff; }
+.top-inner { max-width: 1360px; margin: 0 auto; padding: 0 28px; height: 60px; display: flex; align-items: center; gap: 34px; }
+.logo { display: flex; align-items: center; gap: 10px; font-weight: 800; font-size: 17px; letter-spacing: -0.02em; }
+.logo i { width: 26px; height: 26px; border-radius: 7px; background: linear-gradient(135deg, var(--brand-2), var(--brand)); display: grid; place-items: center; font-style: normal; font-size: 13px; }
+.poc { font-family: var(--mono); font-size: 10.5px; letter-spacing: .08em; color: #99F6E4; border: 1px solid rgba(153,246,228,.35); padding: 2px 7px; border-radius: 4px; }
+nav.main { display: flex; gap: 4px; height: 100%; }
+nav.main a { display: flex; align-items: center; padding: 0 14px; color: rgba(255,255,255,.66); font-weight: 600; border-bottom: 3px solid transparent; }
+nav.main a.on { color: #fff; border-bottom-color: var(--brand-2); }
+nav.main a:hover { color: #fff; }
+.top-right { margin-left: auto; display: flex; align-items: center; gap: 14px; color: rgba(255,255,255,.7); font-size: 13px; }
+.avatar { width: 30px; height: 30px; border-radius: 50%; background: var(--brand); color: #fff; display: grid; place-items: center; font-weight: 700; font-size: 12px; }
+.sub { background: var(--panel); border-bottom: 1px solid var(--rule); }
+.sub-inner { max-width: 1360px; margin: 0 auto; padding: 0 28px; height: 46px; display: flex; align-items: center; gap: 22px; color: var(--ink-3); font-weight: 600; font-size: 13px; }
+.sub-inner .on { color: var(--brand); }
+.sub-inner .sp { margin-left: auto; }
+
+main { max-width: 1360px; margin: 0 auto; padding: 26px 28px 40px; }
+.view { display: none; } .view.on { display: block; }
+.ph { display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 20px; }
+.ph h1 { margin: 0; font-size: 26px; letter-spacing: -0.03em; font-weight: 800; }
+.ph p { margin: 4px 0 0; color: var(--ink-2); }
+.btn { display: inline-flex; align-items: center; gap: 8px; background: var(--brand); color: #fff; font-weight: 700; padding: 9px 16px; border-radius: 8px; font-size: 13px; }
+.btn.ghost { background: var(--panel); color: var(--ink); border: 1px solid var(--rule); }
+.row { display: grid; gap: 16px; }
+.k4 { grid-template-columns: repeat(4, 1fr); } .k3 { grid-template-columns: repeat(3, 1fr); } .s21 { grid-template-columns: 2fr 1fr; } .s12 { grid-template-columns: 1fr 2fr; }
+.card { background: var(--panel); border: 1px solid var(--rule); border-radius: 12px; padding: 18px 20px; }
+.card h3 { margin: 0 0 4px; font-size: 15px; letter-spacing: -0.01em; }
+.card .hint { color: var(--ink-3); font-size: 12.5px; margin: 0 0 14px; }
+.kpi .l { color: var(--ink-3); font-size: 12.5px; font-weight: 600; }
+.kpi .v { font-size: 28px; font-weight: 800; letter-spacing: -0.03em; margin: 4px 0 2px; }
+.kpi .d { font-size: 12px; font-weight: 700; color: var(--brand); }
+.kpi .d.warn { color: var(--amber); }
+.mt { margin-top: 16px; }
+table { width: 100%; border-collapse: collapse; font-size: 13px; }
+th { text-align: left; font-size: 11.5px; letter-spacing: .06em; text-transform: uppercase; color: var(--ink-3); font-weight: 700; padding: 10px 10px; border-bottom: 1px solid var(--rule); }
+td { padding: 11px 10px; border-bottom: 1px solid var(--rule); }
+tr:last-child td { border-bottom: 0; }
+.pill { display: inline-block; font-size: 11.5px; font-weight: 700; padding: 3px 9px; border-radius: 999px; }
+.p-ok { background: var(--brand-soft); color: var(--brand); } .p-warn { background: var(--amber-soft); color: var(--amber); } .p-bad { background: var(--red-soft); color: var(--red); } .p-ind { background: var(--indigo-soft); color: var(--indigo); }
+.bar { height: 7px; background: var(--rule); border-radius: 99px; overflow: hidden; } .bar > i { display: block; height: 100%; background: var(--brand-2); }
+.mono { font-family: var(--mono); font-size: 12px; }
+.muted { color: var(--ink-3); }
+.name { font-weight: 700; } .name small { display: block; font-weight: 500; color: var(--ink-3); font-size: 12px; }
+
+/* Pipeline */
+.stages { display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px; }
+.stage { background: var(--panel); border: 1px solid var(--rule); border-radius: 12px; padding: 16px; position: relative; }
+.stage .n { font-family: var(--mono); font-size: 11px; color: var(--brand); }
+.stage h4 { margin: 6px 0 2px; font-size: 14.5px; }
+.stage .c { font-size: 22px; font-weight: 800; letter-spacing: -0.02em; margin-top: 8px; }
+.stage .s { color: var(--ink-3); font-size: 12px; }
+.stage + .stage::before { content: '→'; position: absolute; left: -12px; top: 50%; transform: translate(-50%, -50%); color: var(--ink-3); }
+.map-row { display: grid; grid-template-columns: 1fr 22px 1fr 110px; gap: 10px; align-items: center; padding: 9px 0; border-bottom: 1px solid var(--rule); font-size: 13px; }
+.map-row:last-child { border-bottom: 0; }
+.chip { font-family: var(--mono); font-size: 12px; background: var(--bg); border: 1px solid var(--rule); padding: 3px 8px; border-radius: 6px; }
+
+/* Dataset cards */
+.ds { display: flex; flex-direction: column; gap: 10px; }
+.ds .top-line { display: flex; justify-content: space-between; align-items: center; }
+.ds h3 { font-size: 16px; }
+.ds .meta { display: flex; flex-wrap: wrap; gap: 6px; }
+.ds .foot { display: flex; justify-content: space-between; align-items: center; border-top: 1px solid var(--rule); padding-top: 12px; margin-top: 4px; }
+.price { font-weight: 800; font-size: 17px; } .price small { font-weight: 600; color: var(--ink-3); font-size: 12px; }
+.filters { display: flex; gap: 8px; margin-bottom: 16px; flex-wrap: wrap; }
+.filter { background: var(--panel); border: 1px solid var(--rule); border-radius: 8px; padding: 7px 12px; font-weight: 600; font-size: 13px; color: var(--ink-2); }
+.filter.on { background: var(--ink); color: #fff; border-color: var(--ink); }
+
+/* Heat grid */
+.heat { display: grid; grid-template-columns: repeat(7, 1fr); gap: 5px; }
+.heat div { aspect-ratio: 1.35; border-radius: 6px; display: flex; flex-direction: column; justify-content: flex-end; padding: 6px 7px; font-size: 10.5px; font-weight: 700; color: #fff; }
+.legend { display: flex; align-items: center; gap: 8px; margin-top: 10px; font-size: 12px; color: var(--ink-3); }
+.legend span { width: 120px; height: 8px; border-radius: 99px; background: linear-gradient(90deg, #CCFBF1, #0F766E, #042F2E); }
+svg text { font-family: var(--font); }
+</style>
+</head>
+<body>
+<header class="top"><div class="top-inner">
+  <div class="logo"><i>PN</i>Property Nex <span class="poc">POC</span></div>
+  <nav class="main">
+    <a href="#overview" data-v="overview">Overview</a>
+    <a href="#sources" data-v="sources">Data Sources</a>
+    <a href="#studio" data-v="studio">Data Studio</a>
+    <a href="#datasets" data-v="datasets">Datasets</a>
+    <a href="#marketplace" data-v="marketplace">Marketplace</a>
+    <a href="#partners" data-v="partners">Partner Payouts</a>
+  </nav>
+  <div class="top-right"><span>Workspace: APAC pilot</span><div class="avatar">AS</div></div>
+</div></header>
+<div class="sub"><div class="sub-inner" id="crumbs"></div></div>
+
+<main>
+<!-- OVERVIEW -->
+<section class="view" id="v-overview">
+  <div class="ph"><div><h1>Data platform overview</h1><p>Property data sourced from partners, processed into datasets and licensed to commercial buyers.</p></div><a class="btn" href="#sources">+ Onboard a data partner</a></div>
+  <div class="row k4">
+    <div class="card kpi"><div class="l">Property records processed</div><div class="v">2.4M</div><div class="d">+186K this month</div></div>
+    <div class="card kpi"><div class="l">Active data partners</div><div class="v">18</div><div class="d">4 onboarding</div></div>
+    <div class="card kpi"><div class="l">Published datasets</div><div class="v">12</div><div class="d">3 in review</div></div>
+    <div class="card kpi"><div class="l">Buyer licences (pilot)</div><div class="v">27</div><div class="d">across 5 segments</div></div>
+  </div>
+  <div class="row s21 mt">
+    <div class="card">
+      <h3>Records processed vs. licensed</h3><p class="hint">Monthly, pilot period</p>
+      <svg viewBox="0 0 760 230" width="100%" height="230">
+        <g stroke="#E1E6E4"><line x1="40" y1="20" x2="750" y2="20"/><line x1="40" y1="75" x2="750" y2="75"/><line x1="40" y1="130" x2="750" y2="130"/><line x1="40" y1="185" x2="750" y2="185"/></g>
+        <g fill="#7A8683" font-size="11"><text x="0" y="24">3M</text><text x="0" y="79">2M</text><text x="0" y="134">1M</text><text x="8" y="189">0</text></g>
+        <g fill="#CCFBF1"><rect x="70" y="160" width="40" height="25" rx="4"/><rect x="180" y="140" width="40" height="45" rx="4"/><rect x="290" y="118" width="40" height="67" rx="4"/><rect x="400" y="96" width="40" height="89" rx="4"/><rect x="510" y="74" width="40" height="111" rx="4"/><rect x="620" y="52" width="40" height="133" rx="4"/></g>
+        <polyline fill="none" stroke="#0F766E" stroke-width="3" points="90,178 200,168 310,152 420,134 530,116 640,94"/>
+        <g fill="#0F766E"><circle cx="90" cy="178" r="4"/><circle cx="200" cy="168" r="4"/><circle cx="310" cy="152" r="4"/><circle cx="420" cy="134" r="4"/><circle cx="530" cy="116" r="4"/><circle cx="640" cy="94" r="4"/></g>
+        <g fill="#7A8683" font-size="11" text-anchor="middle"><text x="90" y="205">Month 1</text><text x="200" y="205">Month 2</text><text x="310" y="205">Month 3</text><text x="420" y="205">Month 4</text><text x="530" y="205">Month 5</text><text x="640" y="205">Month 6</text></g>
+        <g font-size="12" font-weight="600"><rect x="520" y="222" width="10" height="8" fill="#CCFBF1"/><text x="536" y="230" fill="#44524F">Records processed</text><rect x="650" y="225" width="14" height="3" fill="#0F766E"/><text x="670" y="230" fill="#44524F">Licensed</text></g>
+      </svg>
+    </div>
+    <div class="card">
+      <h3>Demand by buyer segment</h3><p class="hint">Share of licence requests</p>
+      <div style="display:grid;gap:14px;margin-top:6px">
+        <div><div style="display:flex;justify-content:space-between"><b>Banks &amp; lenders</b><span class="mono">31%</span></div><div class="bar"><i style="width:31%"></i></div></div>
+        <div><div style="display:flex;justify-content:space-between"><b>Insurers</b><span class="mono">22%</span></div><div class="bar"><i style="width:22%"></i></div></div>
+        <div><div style="display:flex;justify-content:space-between"><b>Retail chains</b><span class="mono">19%</span></div><div class="bar"><i style="width:19%"></i></div></div>
+        <div><div style="display:flex;justify-content:space-between"><b>Logistics &amp; 3PL</b><span class="mono">16%</span></div><div class="bar"><i style="width:16%"></i></div></div>
+        <div><div style="display:flex;justify-content:space-between"><b>Investment funds</b><span class="mono">12%</span></div><div class="bar"><i style="width:12%"></i></div></div>
+      </div>
+    </div>
+  </div>
+  <div class="row s12 mt">
+    <div class="card">
+      <h3>Pipeline health</h3><p class="hint">Last 24 hours</p>
+      <table><tr><td>Ingestion jobs</td><td><span class="pill p-ok">42 / 42 ok</span></td></tr><tr><td>De-duplication</td><td><span class="pill p-ok">99.2% match rate</span></td></tr><tr><td>Schema mapping</td><td><span class="pill p-warn">2 fields unmapped</span></td></tr><tr><td>Freshness SLA</td><td><span class="pill p-ok">within 48h</span></td></tr></table>
+    </div>
+    <div class="card">
+      <h3>Rental index heat map</h3><p class="hint">Relative rent level by district, residential</p>
+      <div class="heat" id="heat"></div>
+      <div class="legend">Lower<span></span>Higher</div>
+    </div>
+  </div>
+</section>
+
+<!-- SOURCES -->
+<section class="view" id="v-sources">
+  <div class="ph"><div><h1>Data sources</h1><p>Property clients who hold the data, what they hold, and how usable it is.</p></div><a class="btn" href="#">+ Add partner</a></div>
+  <div class="row k4">
+    <div class="card kpi"><div class="l">Partners analysed</div><div class="v">46</div><div class="d">from discovery</div></div>
+    <div class="card kpi"><div class="l">Qualified as sources</div><div class="v">22</div><div class="d">48% qualification rate</div></div>
+    <div class="card kpi"><div class="l">Avg. data quality score</div><div class="v">81</div><div class="d">target 85</div></div>
+    <div class="card kpi"><div class="l">Formats handled</div><div class="v">9</div><div class="d warn">2 need custom parsers</div></div>
+  </div>
+  <div class="card mt">
+    <h3>Partner register</h3><p class="hint">Names withheld in the POC · value score combines volume, coverage, freshness and exclusivity</p>
+    <table>
+      <tr><th>Partner</th><th>Type</th><th>Records</th><th>Format</th><th>Freshness</th><th>Quality</th><th>Value score</th><th>Status</th></tr>
+      <tr><td class="name">Partner 01<small>Residential developer</small></td><td>Transactions</td><td class="mono">412,300</td><td><span class="chip">CSV</span></td><td>Daily</td><td><div class="bar"><i style="width:92%"></i></div></td><td class="mono">94</td><td><span class="pill p-ok">Live</span></td></tr>
+      <tr><td class="name">Partner 02<small>Property agency network</small></td><td>Listings &amp; rents</td><td class="mono">655,120</td><td><span class="chip">API</span></td><td>Hourly</td><td><div class="bar"><i style="width:88%"></i></div></td><td class="mono">91</td><td><span class="pill p-ok">Live</span></td></tr>
+      <tr><td class="name">Partner 03<small>Commercial landlord</small></td><td>Occupancy &amp; leases</td><td class="mono">38,940</td><td><span class="chip">XLSX</span></td><td>Weekly</td><td><div class="bar"><i style="width:74%"></i></div></td><td class="mono">82</td><td><span class="pill p-ok">Live</span></td></tr>
+      <tr><td class="name">Partner 04<small>Facility manager</small></td><td>Footfall &amp; utilities</td><td class="mono">1,204,800</td><td><span class="chip">SFTP</span></td><td>Daily</td><td><div class="bar"><i style="width:69%"></i></div></td><td class="mono">77</td><td><span class="pill p-warn">Mapping</span></td></tr>
+      <tr><td class="name">Partner 05<small>Industrial park operator</small></td><td>Lease rates</td><td class="mono">12,410</td><td><span class="chip">PDF</span></td><td>Monthly</td><td><div class="bar"><i style="width:58%"></i></div></td><td class="mono">63</td><td><span class="pill p-ind">Parser build</span></td></tr>
+      <tr><td class="name">Partner 06<small>Valuation firm</small></td><td>Valuations</td><td class="mono">96,700</td><td><span class="chip">API</span></td><td>Weekly</td><td><div class="bar"><i style="width:81%"></i></div></td><td class="mono">86</td><td><span class="pill p-warn">Contracting</span></td></tr>
+      <tr><td class="name">Partner 07<small>Co-living operator</small></td><td>Occupancy</td><td class="mono">8,260</td><td><span class="chip">CSV</span></td><td>Monthly</td><td><div class="bar"><i style="width:41%"></i></div></td><td class="mono">44</td><td><span class="pill p-bad">Not qualified</span></td></tr>
+    </table>
+  </div>
+</section>
+
+<!-- STUDIO -->
+<section class="view" id="v-studio">
+  <div class="ph"><div><h1>Data Studio</h1><p>Every source goes through the same pipeline before it can reach a dataset.</p></div><a class="btn ghost" href="#">View run log</a></div>
+  <div class="stages">
+    <div class="stage"><div class="n">01</div><h4>Ingest</h4><div class="s">CSV, XLSX, API, SFTP, PDF</div><div class="c">2.61M</div><div class="s">raw records</div></div>
+    <div class="stage"><div class="n">02</div><h4>Clean</h4><div class="s">Types, units, currencies</div><div class="c">2.55M</div><div class="s">2.3% rejected</div></div>
+    <div class="stage"><div class="n">03</div><h4>De-duplicate</h4><div class="s">Address + parcel matching</div><div class="c">2.43M</div><div class="s">118K merged</div></div>
+    <div class="stage"><div class="n">04</div><h4>Normalise</h4><div class="s">One property data model</div><div class="c">2.41M</div><div class="s">96 canonical fields</div></div>
+    <div class="stage"><div class="n">05</div><h4>Enrich</h4><div class="s">Geo, district, asset class</div><div class="c">2.40M</div><div class="s">ready for datasets</div></div>
+  </div>
+  <div class="row s21 mt">
+    <div class="card">
+      <h3>Schema mapping · Partner 04</h3><p class="hint">Source fields mapped to the canonical property model</p>
+      <div class="map-row"><span class="chip">bldg_ref</span><span class="muted">→</span><span class="chip">property.id</span><span class="pill p-ok">Mapped</span></div>
+      <div class="map-row"><span class="chip">addr_line_1 + pc</span><span class="muted">→</span><span class="chip">property.address</span><span class="pill p-ok">Mapped</span></div>
+      <div class="map-row"><span class="chip">gfa_sqm</span><span class="muted">→</span><span class="chip">property.floor_area_sqm</span><span class="pill p-ok">Mapped</span></div>
+      <div class="map-row"><span class="chip">visitors_day</span><span class="muted">→</span><span class="chip">activity.footfall_daily</span><span class="pill p-ok">Mapped</span></div>
+      <div class="map-row"><span class="chip">kwh_month</span><span class="muted">→</span><span class="chip">activity.energy_kwh</span><span class="pill p-ok">Mapped</span></div>
+      <div class="map-row"><span class="chip">tenant_cat</span><span class="muted">→</span><span class="chip">occupancy.use_class</span><span class="pill p-warn">Review</span></div>
+      <div class="map-row"><span class="chip">zone_code</span><span class="muted">→</span><span class="chip">location.district</span><span class="pill p-warn">Review</span></div>
+    </div>
+    <div class="card">
+      <h3>Quality checks</h3><p class="hint">Applied to every run</p>
+      <table>
+        <tr><td>Valid address &amp; geocode</td><td class="mono">99.1%</td></tr>
+        <tr><td>Complete floor area</td><td class="mono">96.4%</td></tr>
+        <tr><td>Price / rent in range</td><td class="mono">98.7%</td></tr>
+        <tr><td>Duplicate rate after merge</td><td class="mono">0.4%</td></tr>
+        <tr><td>Personal data removed</td><td><span class="pill p-ok">100%</span></td></tr>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- DATASETS -->
+<section class="view" id="v-datasets">
+  <div class="ph"><div><h1>Datasets</h1><p>The data module packages processed records into products buyers can license.</p></div><a class="btn" href="#">+ Build dataset</a></div>
+  <div class="filters"><span class="filter on">All</span><span class="filter">Residential</span><span class="filter">Commercial</span><span class="filter">Retail</span><span class="filter">Industrial</span><span class="filter">Draft</span></div>
+  <div class="row k3">
+    <div class="card ds"><div class="top-line"><span class="pill p-ok">Published</span><span class="mono muted">v3.2</span></div><h3>Residential Rental Index</h3><p class="hint" style="margin:0">Median rents by district and unit type, with 36-month history.</p><div class="meta"><span class="chip">28 districts</span><span class="chip">Monthly</span><span class="chip">36 mo history</span></div><div class="foot"><span class="muted">14 licences</span><span class="muted">Updated 2d ago</span></div></div>
+    <div class="card ds"><div class="top-line"><span class="pill p-ok">Published</span><span class="mono muted">v2.0</span></div><h3>Transaction Price History</h3><p class="hint" style="margin:0">Cleaned sale transactions with price per sqm and asset class.</p><div class="meta"><span class="chip">412K records</span><span class="chip">Weekly</span><span class="chip">Parcel-matched</span></div><div class="foot"><span class="muted">9 licences</span><span class="muted">Updated 5d ago</span></div></div>
+    <div class="card ds"><div class="top-line"><span class="pill p-ok">Published</span><span class="mono muted">v1.4</span></div><h3>Commercial Occupancy &amp; Vacancy</h3><p class="hint" style="margin:0">Occupancy and vacancy by building grade and submarket.</p><div class="meta"><span class="chip">1,120 buildings</span><span class="chip">Weekly</span><span class="chip">Grade A/B</span></div><div class="foot"><span class="muted">6 licences</span><span class="muted">Updated 1d ago</span></div></div>
+    <div class="card ds"><div class="top-line"><span class="pill p-warn">In review</span><span class="mono muted">v0.9</span></div><h3>Retail Footfall Proxy</h3><p class="hint" style="margin:0">Daily visitor activity around retail assets, aggregated and anonymised.</p><div class="meta"><span class="chip">340 assets</span><span class="chip">Daily</span><span class="chip">Aggregated</span></div><div class="foot"><span class="muted">Pilot: 3 buyers</span><span class="muted">QA in progress</span></div></div>
+    <div class="card ds"><div class="top-line"><span class="pill p-ok">Published</span><span class="mono muted">v1.1</span></div><h3>Industrial Lease Rates</h3><p class="hint" style="margin:0">Asking and achieved lease rates for warehouses and light industrial.</p><div class="meta"><span class="chip">6 parks</span><span class="chip">Monthly</span><span class="chip">sqm basis</span></div><div class="foot"><span class="muted">4 licences</span><span class="muted">Updated 9d ago</span></div></div>
+    <div class="card ds"><div class="top-line"><span class="pill p-ind">Draft</span><span class="mono muted">v0.3</span></div><h3>New Launch Pipeline</h3><p class="hint" style="margin:0">Upcoming residential launches with unit mix and expected pricing bands.</p><div class="meta"><span class="chip">58 projects</span><span class="chip">Monthly</span><span class="chip">Forward-looking</span></div><div class="foot"><span class="muted">Not yet licensed</span><span class="muted">Schema set</span></div></div>
+  </div>
+</section>
+
+<!-- MARKETPLACE -->
+<section class="view" id="v-marketplace">
+  <div class="ph"><div><h1>Marketplace</h1><p>What a commercial buyer sees: browse, preview and license datasets.</p></div><span class="pill p-ind">Buyer view · Logistics &amp; 3PL</span></div>
+  <div class="row s21">
+    <div class="card">
+      <div style="display:flex;justify-content:space-between;align-items:flex-start"><div><h3 style="font-size:20px">Industrial Lease Rates</h3><p class="hint">Warehouses and light industrial · monthly · sqm basis</p></div><span class="pill p-ok">Available</span></div>
+      <h3 class="mt" style="font-size:13px;color:var(--ink-3);text-transform:uppercase;letter-spacing:.06em">Sample preview</h3>
+      <table>
+        <tr><th>Park</th><th>Asset</th><th>Asking / sqm</th><th>Achieved / sqm</th><th>Vacancy</th><th>Trend</th></tr>
+        <tr><td>Park A · West</td><td>Ramp-up warehouse</td><td class="mono">$2.10</td><td class="mono">$1.96</td><td class="mono">4.2%</td><td><span class="pill p-ok">↑ 1.8%</span></td></tr>
+        <tr><td>Park B · North</td><td>Light industrial</td><td class="mono">$1.74</td><td class="mono">$1.69</td><td class="mono">6.9%</td><td><span class="pill p-ok">↑ 0.6%</span></td></tr>
+        <tr><td>Park C · East</td><td>Cold storage</td><td class="mono">$3.05</td><td class="mono">$2.98</td><td class="mono">2.1%</td><td><span class="pill p-ok">↑ 3.1%</span></td></tr>
+        <tr><td>Park D · Central</td><td>Flatted factory</td><td class="mono">$1.52</td><td class="mono">$1.41</td><td class="mono">9.8%</td><td><span class="pill p-bad">↓ 1.2%</span></td></tr>
+      </table>
+      <p class="hint mt" style="margin-bottom:0">Preview limited to 4 of 1,860 rows. Full dataset delivered via API or monthly file.</p>
+    </div>
+    <div class="card">
+      <h3>Choose a licence</h3><p class="hint">Per buyer, per use case</p>
+      <div style="display:grid;gap:10px">
+        <div style="border:1px solid var(--rule);border-radius:10px;padding:14px"><b>Snapshot</b><div class="muted" style="font-size:12.5px">One-off file, current month</div><div class="price" style="margin-top:6px">$1,200 <small>one-time</small></div></div>
+        <div style="border:2px solid var(--brand);border-radius:10px;padding:14px;background:var(--brand-soft)"><b>Subscription</b> <span class="pill p-ok" style="margin-left:6px">Most chosen</span><div class="muted" style="font-size:12.5px">Monthly refresh + 36-month history</div><div class="price" style="margin-top:6px">$650 <small>/ month</small></div></div>
+        <div style="border:1px solid var(--rule);border-radius:10px;padding:14px"><b>Enterprise API</b><div class="muted" style="font-size:12.5px">Live API, all districts, SLA</div><div class="price" style="margin-top:6px">Custom</div></div>
+        <a class="btn" href="#" style="justify-content:center">Request licence</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PARTNERS -->
+<section class="view" id="v-partners">
+  <div class="ph"><div><h1>Partner payouts</h1><p>Property clients earn a share every time their data is licensed.</p></div><a class="btn ghost" href="#">Export statement</a></div>
+  <div class="row k4">
+    <div class="card kpi"><div class="l">Licence revenue (pilot)</div><div class="v">$48.6K</div><div class="d">6 months</div></div>
+    <div class="card kpi"><div class="l">Paid to partners</div><div class="v">$19.4K</div><div class="d">40% revenue share</div></div>
+    <div class="card kpi"><div class="l">Partners earning</div><div class="v">11</div><div class="d">of 18 active</div></div>
+    <div class="card kpi"><div class="l">Next payout</div><div class="v">Day 5</div><div class="d">monthly cycle</div></div>
+  </div>
+  <div class="card mt">
+    <h3>Revenue share by partner</h3><p class="hint">Attribution follows the records each licensed dataset was built from</p>
+    <table>
+      <tr><th>Partner</th><th>Datasets contributed to</th><th>Licences</th><th>Attributed revenue</th><th>Partner share</th><th>Status</th></tr>
+      <tr><td class="name">Partner 02<small>Property agency network</small></td><td>Rental Index · Transactions</td><td class="mono">23</td><td class="mono">$14,820</td><td class="mono">$5,928</td><td><span class="pill p-ok">Paid</span></td></tr>
+      <tr><td class="name">Partner 01<small>Residential developer</small></td><td>Transactions · New Launch</td><td class="mono">9</td><td class="mono">$9,450</td><td class="mono">$3,780</td><td><span class="pill p-ok">Paid</span></td></tr>
+      <tr><td class="name">Partner 03<small>Commercial landlord</small></td><td>Occupancy &amp; Vacancy</td><td class="mono">6</td><td class="mono">$7,380</td><td class="mono">$2,952</td><td><span class="pill p-ok">Paid</span></td></tr>
+      <tr><td class="name">Partner 06<small>Valuation firm</small></td><td>Transactions</td><td class="mono">9</td><td class="mono">$5,610</td><td class="mono">$2,244</td><td><span class="pill p-warn">Pending</span></td></tr>
+      <tr><td class="name">Partner 05<small>Industrial park operator</small></td><td>Industrial Lease Rates</td><td class="mono">4</td><td class="mono">$4,920</td><td class="mono">$1,968</td><td><span class="pill p-warn">Pending</span></td></tr>
+    </table>
+  </div>
+</section>
+</main>
+
+<script>
+const crumbs = {
+  overview: ['Dashboard', 'Pipeline', 'Buyers', 'Alerts'],
+  sources: ['All partners', 'Discovery', 'Contracts', 'Formats'],
+  studio: ['Pipeline', 'Schema mapping', 'Quality rules', 'Run log'],
+  datasets: ['Catalogue', 'Builder', 'Versions', 'Access rules'],
+  marketplace: ['Browse', 'Licences', 'API keys', 'Invoices'],
+  partners: ['Statements', 'Attribution', 'Contracts', 'Tax'],
+};
+function show() {
+  const v = (location.hash || '#overview').slice(1);
+  const id = crumbs[v] ? v : 'overview';
+  document.querySelectorAll('.view').forEach(e => e.classList.toggle('on', e.id === 'v-' + id));
+  document.querySelectorAll('nav.main a').forEach(a => a.classList.toggle('on', a.dataset.v === id));
+  document.getElementById('crumbs').innerHTML = crumbs[id].map((c, i) => `<span class="${i ? '' : 'on'}">${c}</span>`).join('') + '<span class="sp">Sample data · Proof of concept</span>';
+}
+// Heat map (illustrative)
+const levels = [.35,.52,.78,.91,.66,.44,.3,.58,.83,.95,.72,.49,.38,.62,.47,.69,.88,.8,.57,.41,.28,.33,.5,.61,.54,.39,.26,.45];
+document.getElementById('heat').innerHTML = levels.map((v, i) => {
+  const c = v > .8 ? '#042F2E' : v > .65 ? '#0F766E' : v > .5 ? '#14B8A6' : v > .38 ? '#5EEAD4' : '#CCFBF1';
+  return `<div style="background:${c};color:${v > .5 ? '#fff' : '#0E1B1A'}">D${String(i + 1).padStart(2, '0')}</div>`;
+}).join('');
+window.addEventListener('hashchange', show); show();
+</script>
+</body>
+</html>

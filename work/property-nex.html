@@ -9,6 +9,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@500;600&family=IBM+Plex+Mono:wght@500&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../style.css">
+<script src="../assistant.js" defer></script>
 </head>
 <body>
 <div class="site-head-bar"><header class="site-head wrap">
@@ -18,26 +19,69 @@
 
 <main>
 <section class="wrap cs-hero">
-  <p class="kicker">Real-estate data platform · concept</p>
+  <p class="kicker">Real-estate data platform · proof of concept</p>
   <h1>Property Nex</h1>
-  <p class="lede">A platform concept that turns scattered property data into a data product that commercial companies can buy.</p>
+  <p class="lede">A proof of concept for a platform that turns scattered property data into data products that commercial companies can license.</p>
   
+  <p class="visit"><a class="btn" href="../poc/property-nex/index.html">Open the clickable POC ↗</a></p>
 </section>
 
 <section class="wrap pair">
-  <div class="section-label"><span>The idea</span></div>
-  <p class="role">Real-estate data sits with many different property owners, developers, brokers and agencies, each holding it in its own format. It is hard to analyse and impossible to sell as a product, even though banks, insurers, retailers, logistics firms and investors need exactly this data to decide where to lend, insure, open and invest. Property Nex is a concept for closing that gap: find the property clients who hold the data, bring it into one consistent model, and offer it through a platform where commercial companies can buy the data they need.</p>
+  <div class="section-label"><span>The problem</span></div>
+  <p class="role">Real-estate data sits with many different property owners, developers, brokers, agencies and facility managers, each holding it in its own format. It is hard to analyse and cannot be sold as a product, even though banks, insurers, retailers, logistics firms and investors need exactly this data to decide where to lend, insure, open and invest. Property Nex closes that gap: find the property clients who hold the data, bring it into one consistent model, and license it through a marketplace, with the property clients earning a share of every licence.</p>
 </section>
 <section class="wrap concept">
   <div class="section-label"><span>Concept flow</span></div>
   <ol class="flowline"><li>Property clients</li><li>Collect &amp; clean</li><li>Data module</li><li>Data platform</li><li>Commercial buyers</li></ol>
-  <p class="mask-note" style="margin-top:14px">Concept illustration. Property Nex is an idea, not a delivered product.</p>
+  <p class="mask-note" style="margin-top:14px">The flow the proof of concept implements end to end.</p>
 </section>
 <section class="wrap design">
-  <div class="section-label"><span>How it would work</span></div>
-  <ol class="reasons"><li>Find and analyse property clients: identify who holds valuable property data, what they hold and what it is worth.</li><li>Collect and process the data: ingest each source, then clean, de-duplicate and normalise it into one property data model.</li><li>Build the data module: enrich and package the data into ready-to-use datasets by location, asset type and time period.</li><li>Launch the platform: a marketplace where commercial companies browse, license and download the datasets, with access controlled per buyer.</li><li>Share the value: property clients earn from data that was previously unused, and buyers get one reliable source instead of many partial ones.</li></ol>
+  <div class="section-label"><span>What the proof of concept covers</span></div>
+  <ol class="reasons"><li>Data sources: property clients analysed and scored on volume, coverage, freshness and exclusivity, so only qualified partners become sources.</li><li>Data Studio: every source runs through one pipeline (ingest, clean, de-duplicate, normalise, enrich) into a canonical property data model, with personal data removed.</li><li>Dataset module: processed records packaged into licensable products such as a rental index, transaction history, commercial occupancy and industrial lease rates.</li><li>Marketplace: buyers preview a dataset and choose a snapshot, subscription or enterprise API licence.</li><li>Partner payouts: revenue attributed back to the partners whose records built each licensed dataset, paid as a revenue share.</li></ol>
 </section>
 
+<section class="wrap flow">
+  <div class="section-label"><span>How it works</span><span class="count">6 screens</span></div>
+  <p class="mask-note">Proof-of-concept screens. All figures, partners and prices are illustrative sample data.</p>
+  <ol class="shots">
+    <li>
+      <figure>
+        <a href="../img/property-nex/01-platform-overview.png" class="shot"><img src="../img/property-nex/01-platform-overview.png" alt="Platform overview: records processed and licensed, active partners, published datasets, and demand by buyer segment." loading="eager"></a>
+        <figcaption><span class="step">01</span>Platform overview: records processed and licensed, active partners, published datasets, and demand by buyer segment.</figcaption>
+      </figure>
+    </li>
+    <li>
+      <figure>
+        <a href="../img/property-nex/02-data-sources-partner-analysis.png" class="shot"><img src="../img/property-nex/02-data-sources-partner-analysis.png" alt="Data sources: each property client is analysed and scored before it becomes a source." loading="lazy"></a>
+        <figcaption><span class="step">02</span>Data sources: each property client is analysed and scored before it becomes a source.</figcaption>
+      </figure>
+    </li>
+    <li>
+      <figure>
+        <a href="../img/property-nex/03-data-studio-pipeline.png" class="shot"><img src="../img/property-nex/03-data-studio-pipeline.png" alt="Data Studio: one pipeline from raw files to a canonical model, with schema mapping and quality checks on every run." loading="lazy"></a>
+        <figcaption><span class="step">03</span>Data Studio: one pipeline from raw files to a canonical model, with schema mapping and quality checks on every run.</figcaption>
+      </figure>
+    </li>
+    <li>
+      <figure>
+        <a href="../img/property-nex/04-dataset-module.png" class="shot"><img src="../img/property-nex/04-dataset-module.png" alt="The dataset module packages processed records into products buyers can license." loading="lazy"></a>
+        <figcaption><span class="step">04</span>The dataset module packages processed records into products buyers can license.</figcaption>
+      </figure>
+    </li>
+    <li>
+      <figure>
+        <a href="../img/property-nex/05-buyer-marketplace.png" class="shot"><img src="../img/property-nex/05-buyer-marketplace.png" alt="The buyer’s view: preview a dataset and pick a licence (snapshot, subscription or enterprise API)." loading="lazy"></a>
+        <figcaption><span class="step">05</span>The buyer’s view: preview a dataset and pick a licence (snapshot, subscription or enterprise API).</figcaption>
+      </figure>
+    </li>
+    <li>
+      <figure>
+        <a href="../img/property-nex/06-partner-revenue-share.png" class="shot"><img src="../img/property-nex/06-partner-revenue-share.png" alt="Partner payouts: licence revenue attributed back to the property clients whose data built each dataset." loading="lazy"></a>
+        <figcaption><span class="step">06</span>Partner payouts: licence revenue attributed back to the property clients whose data built each dataset.</figcaption>
+      </figure>
+    </li>
+  </ol>
+</section>
 <nav class="wrap next"><a href="avar-systems.html"><span>Next</span>Avar Systems</a></nav>
 </main>
 <div class="site-foot-bar"><footer class="site-foot wrap"><span>Abhishek Sharma · Singapore</span><span>Screenshots are live captures. Business data is masked before capture.</span></footer></div>
