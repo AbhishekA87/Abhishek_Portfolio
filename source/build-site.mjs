@@ -76,7 +76,12 @@ for (const cs of caseStudies) {
 <section class="wrap pair">
   <div class="section-label"><span>${esc(cs.roleTitle || 'My role')}</span></div>
   ${cs.role ? `<p class="role">${esc(cs.role)}</p>` : pending('Role and scope on this project')}
-</section>${cs.details ? `
+</section>${cs.concept ? `
+<section class="wrap concept">
+  <div class="section-label"><span>Concept flow</span></div>
+  <ol class="flowline">${cs.concept.map(c => `<li>${esc(c)}</li>`).join('')}</ol>
+  <p class="mask-note" style="margin-top:14px">${esc(cs.conceptNote)}</p>
+</section>` : ''}${cs.details ? `
 <section class="wrap design">
   <div class="section-label"><span>${esc(cs.details.title)}</span></div>
   <ol class="reasons">${cs.details.items.map(d => `<li>${esc(d)}</li>`).join('')}</ol>
@@ -155,7 +160,7 @@ fs.writeFileSync(path.join(DIST, 'index.html'), page({
       <div class="card-body"><span class="num">${String(i + 1).padStart(2, '0')}</span><p class="kicker">${esc(cs.kicker)}</p><h3>${esc(cs.name)}</h3><p>${esc(cs.summary)}</p><span class="more">Read the case study</span></div>
     </a>`).join('\n    ')}
   </div>
-  <div class="section-label sub"><span>More work</span><span class="count">ventures, work in progress &amp; confidential</span></div>
+  <div class="section-label sub"><span>More work</span><span class="count">ventures, work in progress &amp; concepts</span></div>
   <div class="cards small">
     ${light.map(cs => `<a class="card" href="work/${cs.slug}.html">
       <div class="card-img">${cover(cs)}</div>
