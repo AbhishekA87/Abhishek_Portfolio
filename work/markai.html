@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>7-System AI Ecosystem / MarkAI | Abhishek Sharma</title>
+<meta name="description" content="Abhishek Sharma, Senior AI Solutions Architect / Forward Deployed Engineer. Platforms architected and shipped.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@500;600&family=IBM+Plex+Mono:wght@500&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<div class="site-head-bar"><header class="site-head wrap">
+  <a class="mark" href="../index.html">Abhishek Sharma</a>
+  <nav><a href="../index.html#work">Work</a><a href="../index.html#stack">Stack</a><a href="../index.html#experience">Experience</a><a href="../index.html#contact">Contact</a></nav>
+</header></div>
+
+<main>
+<section class="wrap cs-hero">
+  <p class="kicker">Connected AI operations</p>
+  <h1>7-System AI Ecosystem / MarkAI</h1>
+  <p class="lede">Seven connected production systems (lead management, voice, ads, social, lead pipeline, RAG sales knowledge and escalation) running on one shared data layer.</p>
+  
+</section>
+
+<section class="wrap pas">
+  <div class="col"><h2>Problem</h2><p>Lead management, inbound handling, marketing, and customer escalation ran as disconnected manual processes with no shared data layer — high headcount cost, slow response times.</p></div>
+  <div class="col"><h2>Approach</h2><p>Architected and delivered seven connected production systems — agentic lead management, voice agents, ad strategy, social automation, global lead pipeline, a RAG sales-knowledge system, and customer escalation.</p></div>
+</section>
+<section class="wrap impact">
+  <div class="section-label"><span>Impact</span></div>
+  <div class="impact-grid">
+    <div class="fact"><span class="v">7</span><span class="l">connected production systems</span></div>
+    <div class="fact"><span class="v">60%</span><span class="l">efficiency gain</span></div>
+    <div class="fact"><span class="v">2+ FTE</span><span class="l">manual workload removed</span></div>
+  </div>
+  <ul class="impact-list"><li>60% operational efficiency gain</li><li>Elimination of 2+ FTE of manual workload</li></ul>
+</section>
+<section class="wrap design">
+  <div class="section-label"><span>Design &amp; thought process</span></div>
+  <ol class="reasons"><li>Started from one shared data layer (Supabase) rather than building seven independent systems — an earlier ecosystem review showed disconnected agents without a shared source of truth cascade into failures.</li><li>n8n orchestrates all seven so logic changes are made once centrally.</li><li>Voice, chat, and RAG systems read from the same lead record.</li><li>Outbound-facing systems launched with human-in-the-loop review before autonomous send.</li></ol>
+  <div class="stack"><span class="stack-label">Stack</span><span class="chip">GPT-4o</span><span class="chip">Claude</span><span class="chip">Retell AI</span><span class="chip">n8n</span><span class="chip">Supabase</span><span class="chip">Vercel</span><span class="chip">AWS</span></div>
+</section>
+
+<section class="wrap flow">
+  <div class="section-label"><span>How it works</span><span class="count">5 screens</span></div>
+  <p class="mask-note">Live capture. The employer is shown under a fictional brand, Northwind Logistics. Business figures were masked with “X” and company and staff names swapped for generic labels (Client 01, Supplier 01, Sales Rep A) in the page itself, before the screenshot was taken. Nothing was cropped or blurred afterwards.</p>
+  <ol class="shots">
+    <li>
+      <figure>
+        <a href="../img/markai/01-login-screen.png" class="shot"><img src="../img/markai/01-login-screen.png" alt="MarkAI sign-in, the entry point to the marketing layer of the ecosystem." loading="eager"></a>
+        <figcaption><span class="step">01</span>MarkAI sign-in, the entry point to the marketing layer of the ecosystem.</figcaption>
+      </figure>
+    </li>
+    <li>
+      <figure>
+        <a href="../img/markai/02-dashboard-performance-overview.png" class="shot"><img src="../img/markai/02-dashboard-performance-overview.png" alt="Performance overview: channel results read from the shared data layer." loading="lazy"></a>
+        <figcaption><span class="step">02</span>Performance overview: channel results read from the shared data layer.</figcaption>
+      </figure>
+    </li>
+    <li>
+      <figure>
+        <a href="../img/markai/03-social-studio.png" class="shot"><img src="../img/markai/03-social-studio.png" alt="Social Studio, where social content is drafted and reviewed." loading="lazy"></a>
+        <figcaption><span class="step">03</span>Social Studio, where social content is drafted and reviewed.</figcaption>
+      </figure>
+    </li>
+    <li>
+      <figure>
+        <a href="../img/markai/04-autopilot.png" class="shot"><img src="../img/markai/04-autopilot.png" alt="Autopilot: automated workflows with human review before anything is sent." loading="lazy"></a>
+        <figcaption><span class="step">04</span>Autopilot: automated workflows with human review before anything is sent.</figcaption>
+      </figure>
+    </li>
+    <li>
+      <figure>
+        <a href="../img/markai/05-omni-channel.png" class="shot"><img src="../img/markai/05-omni-channel.png" alt="Omni-Channel: every channel on one lead record." loading="lazy"></a>
+        <figcaption><span class="step">05</span>Omni-Channel: every channel on one lead record.</figcaption>
+      </figure>
+    </li>
+  </ol>
+</section>
+<nav class="wrap next"><a href="cat-ai.html"><span>Next</span>CAT AI</a></nav>
+</main>
+<div class="site-foot-bar"><footer class="site-foot wrap"><span>Abhishek Sharma · Singapore</span><span>Screenshots are live captures. Business data is masked before capture.</span></footer></div>
+</body>
+</html>

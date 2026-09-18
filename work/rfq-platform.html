@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>RFQ &amp; Pricing Platform | Abhishek Sharma</title>
+<meta name="description" content="Abhishek Sharma, Senior AI Solutions Architect / Forward Deployed Engineer. Platforms architected and shipped.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@500;600&family=IBM+Plex+Mono:wght@500&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<div class="site-head-bar"><header class="site-head wrap">
+  <a class="mark" href="../index.html">Abhishek Sharma</a>
+  <nav><a href="../index.html#work">Work</a><a href="../index.html#stack">Stack</a><a href="../index.html#experience">Experience</a><a href="../index.html#contact">Contact</a></nav>
+</header></div>
+
+<main>
+<section class="wrap cs-hero">
+  <p class="kicker">Quoting &amp; pricing platform</p>
+  <h1>RFQ &amp; Pricing Platform</h1>
+  <p class="lede">Replaced a spreadsheet-driven RFQ and quoting process with one platform: a canonical product data model, hierarchical markup pricing and an embedded AI pricing assistant.</p>
+  
+</section>
+
+<section class="wrap pas">
+  <div class="col"><h2>Problem</h2><p>Manual, spreadsheet-driven RFQ and quoting process across procurement and commercial teams — no canonical product data, no standard pricing logic, no approvals trail.</p></div>
+  <div class="col"><h2>Approach</h2><p>Ran discovery with commercial and procurement stakeholders; designed a canonical data model (36 sub-categories, 50 spec fields, ~7,900 SKUs); built hierarchical markup pricing logic (row → category → global fallback); shipped to AWS production.</p></div>
+</section>
+<section class="wrap impact">
+  <div class="section-label"><span>Impact</span></div>
+  <div class="impact-grid">
+    <div class="fact"><span class="v">36</span><span class="l">sub-categories</span></div>
+    <div class="fact"><span class="v">50</span><span class="l">spec fields</span></div>
+    <div class="fact"><span class="v">~7,900</span><span class="l">SKUs</span></div>
+  </div>
+  <ul class="impact-list"><li>Replaced the manual quoting process end-to-end</li><li>Embedded Q-Bot, an in-console AI pricing assistant</li><li>Standardised markup logic across the commercial team</li></ul>
+</section>
+<section class="wrap design">
+  <div class="section-label"><span>Design &amp; thought process</span></div>
+  <ol class="reasons"><li>Canonical data model was built first so pricing/approvals logic could sit on top of stable spec data instead of being hard-coded per SKU.</li><li>Markup logic is hierarchical so teams can override case-by-case without breaking the default.</li><li>Employee vs Client Portal login modes are split because internal quoting behaviour differs fundamentally from what an external client should see.</li><li>Q-Bot is embedded in-console rather than a separate tool.</li></ol>
+  <div class="stack"><span class="stack-label">Stack</span><span class="chip">AWS</span><span class="chip">Claude Code</span><span class="chip">Antigravity IDE</span><span class="chip">GitHub</span><span class="chip">Supabase</span><span class="chip">Zoho CRM sync</span><span class="chip">GPT-4o/Claude</span></div>
+</section>
+
+<section class="wrap flow">
+  <div class="section-label"><span>How it works</span><span class="count">9 screens</span></div>
+  <p class="mask-note">Live capture. The employer is shown under a fictional brand, Northwind Logistics. Business figures were masked with “X” and company and staff names swapped for generic labels (Client 01, Supplier 01, Sales Rep A) in the page itself, before the screenshot was taken. Nothing was cropped or blurred afterwards.</p>
+  <ol class="shots">
+    <li>
+      <figure>
+        <a href="../img/rfq-platform/01-login-employee-client-portal.png" class="shot"><img src="../img/rfq-platform/01-login-employee-client-portal.png" alt="Invite-only sign-in. Employees and clients enter through separate portal modes, because internal quoting and what a client sees are different jobs." loading="eager"></a>
+        <figcaption><span class="step">01</span>Invite-only sign-in. Employees and clients enter through separate portal modes, because internal quoting and what a client sees are different jobs.</figcaption>
+      </figure>
+    </li>
+    <li>
+      <figure>
+        <a href="../img/rfq-platform/02-dashboard-overview.png" class="shot"><img src="../img/rfq-platform/02-dashboard-overview.png" alt="The commercial dashboard: quoted value, gross margin, active requests, pending approvals and progress against the FY target." loading="lazy"></a>
+        <figcaption><span class="step">02</span>The commercial dashboard: quoted value, gross margin, active requests, pending approvals and progress against the FY target.</figcaption>
+      </figure>
+    </li>
+    <li>
+      <figure>
+        <a href="../img/rfq-platform/03-rfq-list.png" class="shot"><img src="../img/rfq-platform/03-rfq-list.png" alt="Every customer quote request in one list, with value, margin, status and who currently holds it." loading="lazy"></a>
+        <figcaption><span class="step">03</span>Every customer quote request in one list, with value, margin, status and who currently holds it.</figcaption>
+      </figure>
+    </li>
+    <li>
+      <figure>
+        <a href="../img/rfq-platform/04-quote-pricing-detail.png" class="shot"><img src="../img/rfq-platform/04-quote-pricing-detail.png" alt="Quote detail: cost, sell price and margin for each line item, next to the customer record and the sourcing workflow." loading="lazy"></a>
+        <figcaption><span class="step">04</span>Quote detail: cost, sell price and margin for each line item, next to the customer record and the sourcing workflow.</figcaption>
+      </figure>
+    </li>
+    <li>
+      <figure>
+        <a href="../img/rfq-platform/05-new-customer-quote-request.png" class="shot"><img src="../img/rfq-platform/05-new-customer-quote-request.png" alt="A new Customer Quote Request is a four-step flow: customer, products, pricing and notes, then review." loading="lazy"></a>
+        <figcaption><span class="step">05</span>A new Customer Quote Request is a four-step flow: customer, products, pricing and notes, then review.</figcaption>
+      </figure>
+    </li>
+    <li>
+      <figure>
+        <a href="../img/rfq-platform/06-master-sku-catalog-cost-sell-margin.png" class="shot"><img src="../img/rfq-platform/06-master-sku-catalog-cost-sell-margin.png" alt="The master SKU catalog: every product with cost, sell price and margin in one place. Editing a price updates the master, so future quotes use it." loading="lazy"></a>
+        <figcaption><span class="step">06</span>The master SKU catalog: every product with cost, sell price and margin in one place. Editing a price updates the master, so future quotes use it.</figcaption>
+      </figure>
+    </li>
+    <li>
+      <figure>
+        <a href="../img/rfq-platform/07-approvals-queue.png" class="shot"><img src="../img/rfq-platform/07-approvals-queue.png" alt="Approvals are tiered: manager (Tier 1), management (Tier 2) and SLA-breach tracking. This is the approvals trail the spreadsheets never had." loading="lazy"></a>
+        <figcaption><span class="step">07</span>Approvals are tiered: manager (Tier 1), management (Tier 2) and SLA-breach tracking. This is the approvals trail the spreadsheets never had.</figcaption>
+      </figure>
+    </li>
+    <li>
+      <figure>
+        <a href="../img/rfq-platform/08-ai-insights.png" class="shot"><img src="../img/rfq-platform/08-ai-insights.png" alt="AI Insights flags idle clients, stalled quotes and categories below their margin target." loading="lazy"></a>
+        <figcaption><span class="step">08</span>AI Insights flags idle clients, stalled quotes and categories below their margin target.</figcaption>
+      </figure>
+    </li>
+    <li>
+      <figure>
+        <a href="../img/rfq-platform/09-buying-guide.png" class="shot"><img src="../img/rfq-platform/09-buying-guide.png" alt="Buying guides give customers, vendors and internal teams one shared reference." loading="lazy"></a>
+        <figcaption><span class="step">09</span>Buying guides give customers, vendors and internal teams one shared reference.</figcaption>
+      </figure>
+    </li>
+  </ol>
+</section>
+<nav class="wrap next"><a href="markai.html"><span>Next</span>7-System AI Ecosystem / MarkAI</a></nav>
+</main>
+<div class="site-foot-bar"><footer class="site-foot wrap"><span>Abhishek Sharma · Singapore</span><span>Screenshots are live captures. Business data is masked before capture.</span></footer></div>
+</body>
+</html>
